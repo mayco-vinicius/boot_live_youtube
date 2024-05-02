@@ -27,6 +27,8 @@ def resposta1():
         print("Faltan {} segundos" .format(cont))
         time.sleep(0.5)
 
+    print("programa inicializado")
+
     posicao = pyautogui.position()
 
     return posicao
@@ -44,8 +46,12 @@ def mandar_mensagem(posicao_mouse):
     termina = False
 
     while termina == False:
-        # Trocar o tempo para 300
-        time.sleep(300)
+        # 5 minutos
+        separador()
+        for cont in range(1,300000):
+            print("Mensagem sera enviada em {} milisegundos" .format(cont))
+            time.sleep(0.5)
+        
 
         pyautogui.moveTo(posicao_mouse.x, posicao_mouse.y)
         pyautogui.click(posicao_mouse.x, posicao_mouse.y)
@@ -53,13 +59,16 @@ def mandar_mensagem(posicao_mouse):
 
         pyautogui.hotkey('win', '.')
         time.sleep(1)
-        pyautogui.write('100')
+        pyautogui.write('top')
         time.sleep(5)
         pyautogui.press('enter')
         time.sleep(1)
         pyautogui.click(posicao_mouse.x, posicao_mouse.y)
         time.sleep(0.5)
         pyautogui.press('enter')
+
+        separador()
+        print("Mensagem enviada")
 
 
         # Configurar uma tecla para encerrar o boot
