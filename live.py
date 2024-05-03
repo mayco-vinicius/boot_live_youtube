@@ -4,12 +4,12 @@ import time
 import sys
 
 def separador():
-    print ("="*80)
+    print ("=" * 80)
 
 def menu():
     print("""
             1 - Escolher o local do mouse.
-            2 - Deixar padrão o local do mouse. 
+            2 - Deixar padrão o local do mouse (EM PRODUÇÃO!!). 
             0 - Sair.
         """)
 
@@ -21,7 +21,7 @@ def opcao():
 def resposta1():
     separador()
 
-    print('Posicione o mouse!!')
+    print('Posicione o mouse no local desejado!!')
 
     for cont in range(1,11):
         print("Faltan {} segundos" .format(cont))
@@ -41,37 +41,41 @@ def resposta2():
 def sair():
     sys.exit()
 
+def tempo():
+    cont = int(input('A mensagem sera enviada de quantos em quantos minutos? '))
+    segundos = cont * 60
+    return segundos
 
 def mandar_mensagem(posicao_mouse):
     termina = False
 
+    separador()
+
+    segundos_total = tempo()
+
     while termina == False:
-        # 5 minutos
-        separador()
-        for cont in range(1,300000):
-            print("Mensagem sera enviada em {} milisegundos" .format(cont))
-            time.sleep(0.5)
         
+        separador()
+
+        for segundos in range(segundos_total, 0, -1):
+            minutos = segundos // 60
+            segundos_restantes = segundos % 60
+            print("Mensagem sera enviada em {} minutos e {} segundos" .format(minutos, segundos_restantes))
+            time.sleep(1)
 
         pyautogui.moveTo(posicao_mouse.x, posicao_mouse.y)
         pyautogui.click(posicao_mouse.x, posicao_mouse.y)
         time.sleep(0.5)
 
-        pyautogui.hotkey('win', '.')
-        time.sleep(1)
-        pyautogui.write('top')
+        pyautogui.write(':)')
         time.sleep(5)
         pyautogui.press('enter')
         time.sleep(1)
-        pyautogui.click(posicao_mouse.x, posicao_mouse.y)
-        time.sleep(0.5)
-        pyautogui.press('enter')
 
         separador()
         print("Mensagem enviada")
 
-
-        # Configurar uma tecla para encerrar o boot
+        # Configurar uma tecla para encerrar o bot
 
 def main():
     separador()
